@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        }
+        } 
     }
 
     //add the meal name and sprite to our lists
