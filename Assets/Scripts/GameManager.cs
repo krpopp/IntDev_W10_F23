@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
     private Vector3 AdjustIconPos(GameObject newIcon)
     {
         Vector3 newPos = newIcon.GetComponent<RectTransform>().anchoredPosition;
-        newPos.x += 20;
+        newPos.x = newPos.x + (50f * mealSprites.Count);
         return newPos;
     }
 
