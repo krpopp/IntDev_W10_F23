@@ -58,9 +58,13 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("NPC") || collision.gameObject.CompareTag("Item"))
+        if(collision.gameObject.CompareTag("NPC"))
         {
-            CollideTalkable(collision.gameObject.GetComponent<ITalkable>());
+            CollideNPC(collision.gameObject.GetComponent<NPC>());
+        }
+        else if(collision.gameObject.CompareTag("Item"))
+        {
+            CollideItem(collision.gameObject.GetComponent<Item>());
         }
         else if(collision.gameObject.CompareTag("Exit"))
         {
@@ -69,9 +73,12 @@ public class PlayerControl : MonoBehaviour
     }
 
     //for colliding w/ things that can talk
-    private void CollideTalkable(ITalkable hitThing)
+    private void CollideNPC(NPC hitThing)
     {
-        hitThing.EnterDialogue();
+    }
+
+    private void CollideItem(Item hitThing)
+    {
     }
 
     //for colliding w/ the exit

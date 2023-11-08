@@ -2,54 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour, ITalkable
+public class NPC : MonoBehaviour
 {
     //for writing out a character's dialogue
     [SerializeField]
     private List<string> allLines;
 
-    //tracks how many lines this character can say
-    public int AllLinesCount
-    {
-        get
-        {
-            return allLinesCount;
-        }
-        set
-        {
-            allLinesCount = value;
-        }
-    }
-
     private int allLinesCount;
 
-    //tracks the index of which line we should say
-    public int DialogueCounter
-    {
-        get
-        {
-            return dialogueCounter;
-        }
-        set
-        {
-            dialogueCounter = value;
-        }
-    }
-
     private int dialogueCounter = 0;
-
-    //tracks which line is next to display
-    public string CurrentLine {
-        get
-        {
-            return currentLine;
-        }
-        set
-        {
-            Debug.Log("changed the current line");
-            currentLine = value;
-        }
-    }
 
     private string currentLine;
 
@@ -61,33 +22,30 @@ public class NPC : MonoBehaviour, ITalkable
 
     private void Start()
     {
-        CurrentLine = allLines[DialogueCounter];
+        currentLine = allLines[dialogueCounter];
         allLinesCount = allLines.Count;
     }
 
     //go to the next line, change the portrait, send the text of this line to the manager
-    string ITalkable.UpdateDialogue()
+    string UpdateDialogue()
     {
-        DialogueCounter++;
-        CurrentLine = allLines[DialogueCounter];
-        dialogueManager.SetPortrait(SwitchPortrait(CurrentLine[0]));
-        CurrentLine = CurrentLine.Substring(1);
-        return CurrentLine;
+        dialogueCounter++;
+        currentLine = allLines[dialogueCounter];
+        currentLine = currentLine.Substring(1);
+        return currentLine;
     }
 
     //tell the manager to start dialogue, change our portrait
-    void ITalkable.EnterDialogue()
+    void EnterDialogue()
     {
-        dialogueManager.SetPortrait(SwitchPortrait(CurrentLine[0]));
-        CurrentLine = CurrentLine.Substring(1);
-        dialogueManager.BeginDialogue(this, CurrentLine);
+        currentLine = currentLine.Substring(1);
     }
 
     //reset our dialogue vars
-    void ITalkable.ExitDialogue()
+    void ExitDialogue()
     {
-        DialogueCounter = 0;
-        CurrentLine = allLines[DialogueCounter];
+        dialogueCounter = 0;
+        currentLine = allLines[dialogueCounter];
     }
 
     //change portraits based on the first char of the line
