@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d6faf733847144765a3759f1a4c43553, type: 3}
-  m_Color: {r: 0.5310609, g: 0.6706512, b: 0.735849, a: 0.39607844}
+  m_Sprite: {fileID: 21300000, guid: 95a55c9e414372245845b93a1b5ea323, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -161,5 +161,5 @@ MonoBehaviour:
   - it'll ,make you go to the bathroom
   imageAlpha: 0.5
   dialogueManager: {fileID: 0}
-  basePortrait: {fileID: 389289418, guid: ba12dd69f395e41a4a6326c599607001, type: 3}
-  susPortrait: {fileID: -132522780, guid: ba12dd69f395e41a4a6326c599607001, type: 3}
+  basePortrait: {fileID: 21300000, guid: 96841b3f4abe62441b36356edbb26dee, type: 3}
+  susPortrait: {fileID: 21300000, guid: 96841b3f4abe62441b36356edbb26dee, type: 3}
