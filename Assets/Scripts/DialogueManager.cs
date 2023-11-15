@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private GameObject portraitImage;
 
+    //delegate for what should happen at the end of dialogue vs. description
     delegate void EndText();
     EndText endText;
 
@@ -43,6 +44,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //used for non-dialogue text (grab, taste, look, item talk)
     public void BeginDescription(DialogueObject clickedOn, string text)
     {
         TurnOffPortrait();
@@ -51,6 +53,7 @@ public class DialogueManager : MonoBehaviour
         SwitchPanel(text, true);
     }
 
+    //clear the panel at the end of the description phase
     public void EndDescription()
     {
         SwitchPanel("", false);
@@ -71,6 +74,7 @@ public class DialogueManager : MonoBehaviour
         portraitImage.GetComponent<Image>().sprite = portrait;
     }
 
+    //turn off the character portrait from dialgue
     public void TurnOffPortrait()
     {
        portraitImage.SetActive(false);

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Item : DialogueObject
 {
-
+    //increase the dialogue index
+    //return whatever the next line should be
     public override string UpdateDialogue()
     {
         DialogueCounter++;
@@ -12,6 +13,8 @@ public class Item : DialogueObject
         return nextLine;
     }
 
+    //run base talkto
+    //find the next text line and start dialogue
     public override void TalkTo()
     {
         base.TalkTo();
@@ -19,6 +22,8 @@ public class Item : DialogueObject
         dialogueManager.BeginDescription(this, nextLine);
     }
 
+    //run base grab
+    //add this to the inventory
     public override void Grab()
     {
         base.Grab();

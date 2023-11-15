@@ -58,8 +58,11 @@ public class DialogueObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueManager = GameObject.Find("Game Manager").GetComponent<DialogueManager>();
+        dialogueManager = GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>();
     }
+
+    //methods for different verbs that can run on click
+    //VIRTUAL = can be overridden by inheriting classes
 
     public virtual void LookAt()
     {
@@ -88,11 +91,13 @@ public class DialogueObject : MonoBehaviour
         AllLinesCount = CurrentText.Length;
     }
 
+    //clear the dialogue
     public virtual string UpdateDialogue()
     {
         return "";
     }
 
+    //reset the dialogue 
     public virtual void ExitDialogue()
     {
         DialogueCounter = 0;

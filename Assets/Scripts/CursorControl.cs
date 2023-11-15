@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class CursorControl : MonoBehaviour
 {
+    //image files for what the cursor can be
     [SerializeField]
     Texture2D baseCursor, grabCursor, tasteCursor, talkCursor, lookCursor;
 
+    //if we should use hardware or software renderer cursors
     [SerializeField]
     CursorMode cursorMode = CursorMode.Auto;
 
+    //where on the cursor sprite we should be able to to click
     Vector2 hotSpot = Vector2.zero;
 
+    //delegate to hold methods that call when the player clicks
     delegate void ClickDelegate();
     ClickDelegate clicked;
 
+    //will hold the thing we clicked on
     DialogueObject clickedOn = null;
 
+    //states for the cursor
     public enum CURSORS
     {
         BASE,
@@ -26,6 +32,8 @@ public class CursorControl : MonoBehaviour
         LOOK
     }
 
+    //property for the cursor state
+    //sets the cursor state, including changing the cursor image and the click delegate
     public CURSORS CurrentCursor
     {
         get
@@ -61,33 +69,45 @@ public class CursorControl : MonoBehaviour
         }
     }
 
+    //private state var
     private CURSORS currentCursor;
 
-    // Start is called before the first frame update
+    // set the starting cursor state
     void Start()
     {
         CurrentCursor = CURSORS.BASE;
-        clicked = BaseClick;
     }
 
     // Update is called once per frame
     void Update()
     {
-        SwitchCursor();
-        if(Input.GetMouseButtonDown(0))
+        //if we're not seeing dialogue
+        if (!DialogueManager.inDialogue)
         {
-            RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
-            if(rayHit)
+            //check if the player has pressed a key
+            SwitchCursor();
+            //if the mouse button is pressed
+            if (Input.GetMouseButtonDown(0))
             {
-                if (rayHit.transform.gameObject.GetComponent<DialogueObject>())
+                //create a raycast from the mouse's position
+                RaycastHit2D rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
+                //if it hits something
+                if (rayHit)
                 {
-                    clickedOn = rayHit.transform.GetComponent<DialogueObject>();
-                    clicked();
+                    //if its a thing that can talk
+                    if (rayHit.transform.gameObject.GetComponent<DialogueObject>())
+                    {
+                        //get the thing that is clicked on
+                        clickedOn = rayHit.transform.GetComponent<DialogueObject>();
+                        //run the clicked delegate
+                        clicked();
+                    }
                 }
             }
         }
     }
 
+    //switch the cursor state based on key presses
     void SwitchCursor()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -111,6 +131,8 @@ public class CursorControl : MonoBehaviour
             CurrentCursor = CURSORS.GRAB;
         }
     }
+
+    //different methods for what the player can do when clicking
 
     void BaseClick()
     {

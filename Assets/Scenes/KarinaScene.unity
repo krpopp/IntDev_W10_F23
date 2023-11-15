@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  dialogueManager: {fileID: 890305885}
+  dialogueManager: {fileID: 0}
 --- !u!61 &4317886
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2627,7 +2627,6 @@ GameObject:
   - component: {fileID: 890305881}
   - component: {fileID: 890305883}
   - component: {fileID: 890305884}
-  - component: {fileID: 890305885}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -2698,13 +2697,30 @@ MonoBehaviour:
   talkCursor: {fileID: 2800000, guid: fa91e29d35716e94fbae71f0360aa4ad, type: 3}
   lookCursor: {fileID: 2800000, guid: 5a383260d6e6db44c8e1270b64c2ea1b, type: 3}
   cursorMode: 0
---- !u!114 &890305885
+--- !u!1 &909610752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 909610754}
+  - component: {fileID: 909610753}
+  m_Layer: 0
+  m_Name: Dialogue Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &909610753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890305880}
+  m_GameObject: {fileID: 909610752}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 624c4510386c04556b37206c59f3cb4d, type: 3}
@@ -2713,6 +2729,21 @@ MonoBehaviour:
   textPanel: {fileID: 7929055627339745575}
   dialogueText: {fileID: 7929055627496101568}
   portraitImage: {fileID: 7929055626737143803}
+--- !u!4 &909610754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909610752}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.693961, y: -2.536233, z: 0.03983946}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040155150
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,10 @@ public class NPC : DialogueObject
     [SerializeField]
     private Sprite basePortrait, susPortrait;
 
+    //increase the dialogue count
+    //find the next line
+    //change the portrait
+    //remove the first character (which determines the portrait) from the line
     public override string UpdateDialogue()
     {
         DialogueCounter++;
@@ -18,6 +22,10 @@ public class NPC : DialogueObject
         return nextLine;
     }
 
+    //call base talkto
+    //find the next line
+    //change the portrait
+    //remove the first character (which determines the portrait) from the line
     public override void TalkTo()
     {
         base.TalkTo();
