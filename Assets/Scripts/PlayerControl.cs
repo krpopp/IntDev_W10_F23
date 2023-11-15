@@ -58,11 +58,7 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("NPC") || collision.gameObject.CompareTag("Item"))
-        {
-            CollideTalkable(collision.gameObject.GetComponent<ITalkable>());
-        }
-        else if(collision.gameObject.CompareTag("Exit"))
+        if (collision.gameObject.CompareTag("Exit"))
         {
             CollideExit();
         }

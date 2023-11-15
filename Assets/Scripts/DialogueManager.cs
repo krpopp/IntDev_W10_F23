@@ -16,11 +16,14 @@ public class DialogueManager : MonoBehaviour
     public static bool inDialogue = false;
 
     //for referencing the thing we're talking to
-    private ITalkable talkingTo;
+    private DialogueObject talkingTo;
 
     //image in the canvas that will disply the portrait
     [SerializeField]
-    private Image portraitImage;
+    private GameObject portraitImage;
+
+    delegate void EndText();
+    EndText endText;
 
     //move through story if we're in dialogue mode
     private void Update()
@@ -36,31 +39,45 @@ public class DialogueManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            ProgressDialogue();
+            Progress();
         }
     }
 
-    //set who we're talking to, turn on the dialogue panel
-    public void BeginDialogue(ITalkable talker, string text)
+    public void BeginDescription(DialogueObject clickedOn, string text)
     {
-        talkingTo = talker;
+        TurnOffPortrait();
+        talkingTo = clickedOn;
+        endText = EndDescription;
+        SwitchPanel(text, true);
+    }
+
+    public void EndDescription()
+    {
+        SwitchPanel("", false);
+    }
+
+    //set who we're talking to, turn on the dialogue panel
+    public void BeginDialogue(DialogueObject clickedOn, string text)
+    {
+        endText = EndDialogue;
+        talkingTo = clickedOn;
         SwitchPanel(text, true);
     }
 
     //change what portrait is showing
     public void SetPortrait(Sprite portrait)
     {
-        portraitImage.enabled = true;
-        portraitImage.sprite = portrait;
+        portraitImage.SetActive(true);
+        portraitImage.GetComponent<Image>().sprite = portrait;
     }
 
     public void TurnOffPortrait()
     {
-        portraitImage.enabled = false;
+       portraitImage.SetActive(false);
     }
 
     //end dialogue if we've reached the end or go to the next line
-    private void ProgressDialogue()
+    private void Progress()
     {
         if(talkingTo.DialogueCounter >= talkingTo.AllLinesCount - 1)
         {
@@ -75,6 +92,7 @@ public class DialogueManager : MonoBehaviour
     //clear our dialogue vars, turn off the panel
     private void EndDialogue()
     {
+        TurnOffPortrait();
         talkingTo.ExitDialogue();
         talkingTo = null;
         SwitchPanel("", false);
