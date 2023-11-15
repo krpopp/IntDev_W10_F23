@@ -12,11 +12,7 @@ public class GameManager : MonoBehaviour
     public List<Sprite> mealSprites = new List<Sprite>();
 
     //prefab that will display the food we collect
-    [SerializeField]
-    GameObject mealIcon;
-
-    [SerializeField]
-    GameObject canvas;
+    public GameObject mealIcon,canvas;
 
     //SINGLETON if Instance has not been set and instance is not this, destroy this
     //otherwise, set this script to be the Instance and don't let it destroy itself
